@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
+// import withMUI from './lib/withMUI'
+// import withApollo from './lib/withApollo'
+import Grid from '@material-ui/core/Grid'
+import Home from './components/Home'
+import Navigation from './components/Navigation'
+
+const history = createHistory()
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Router history={history}>
+        <div>
+          <Grid container direction='row'>
+            <Grid item sm={10} style={{ backgroundColor: 'white' }}>
+              <Navigation />
+              <Route path='/' component={Home} />
+            </Grid>
+          </Grid>
+        </div>
+      </Router>
+    )
   }
 }
 
-export default App;
+// export default withMUI(withApollo(App))
+export default App
